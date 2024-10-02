@@ -14,8 +14,6 @@ const NavBar = () => {
 						Pro<span className="text-blue-500">Scheduler</span>
 					</h4>
 				</Link>
-				<Link href="/">home</Link>
-				<Link href="/dashboard">dashboard</Link>
 				<AuthModal />
 			</div>
 		</>
