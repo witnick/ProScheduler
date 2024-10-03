@@ -17,9 +17,24 @@ import {
 	DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { requireUser } from "../lib/hooks";
+import prisma from "../lib/db";
+import { redirect } from "next/navigation";
 
+async function getData(userId: string) {
+	const data = await prisma.user.findUnique({
+		where: {
+			id: userId,
+		},
+		select: {
+			userName: true,
+		},
+	});
+	if (!data?.userName) return redirect("/onboarding");
+	return data;
+}
 const DashboardLayout = async ({ children }: { children: ReactNode }) => {
 	const session = await requireUser();
+	const userNameData = await getData(session.user?.id as string);
 	return (
 		<div className="min-h-screen w-full grid md:grid-cols-[220px_1fr] lg:grid-cols-[290px_1fr]">
 			<div className="hidden md:block border-white bg-muted/40">
@@ -58,6 +73,7 @@ const DashboardLayout = async ({ children }: { children: ReactNode }) => {
 						</SheetContent>
 					</Sheet>
 					<div className="ml-auto flex items-center gap-x-4">
+						<div>Hello, {userNameData.userName}</div>
 						<ThemeToggle />
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
