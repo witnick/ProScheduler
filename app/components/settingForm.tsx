@@ -23,6 +23,8 @@ import { Plus, X } from "lucide-react";
 // import { supabase } from "../lib/supabase";
 import { requireUser } from "../lib/hooks";
 import { v4 as uuidv4 } from "uuid";
+import { Toaster } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 interface ISettingForm {
 	fullName: string;
@@ -68,6 +70,9 @@ const SettingForm = ({ fullName, email, profileImage }: ISettingForm) => {
 		setImageFile(e.target.files[0]);
 		const url = URL.createObjectURL(e.target.files[0]);
 		setImageFileUrl(url);
+		toast.success("Profile image changed", {
+			closeButton: true,
+		});
 	};
 
 	return (
@@ -178,6 +183,7 @@ const SettingForm = ({ fullName, email, profileImage }: ISettingForm) => {
 					/>
 				</CardFooter>
 			</form>
+			<Toaster richColors />
 		</Card>
 	);
 };

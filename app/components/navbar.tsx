@@ -7,7 +7,7 @@ import AuthModal from "./authModal";
 const NavBar = () => {
 	return (
 		<>
-			<div className="flex py-5 items-center justify-between bg-white">
+			<div className="flex py-5 px-5 items-center justify-between bg-muted/40">
 				<Link href="/" className="flex items-center gap-2">
 					<Image src={Logo} alt="logo" className="size-10" />
 					<h4 className="text-3xl font-semibold">

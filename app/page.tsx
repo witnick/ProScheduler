@@ -8,7 +8,7 @@ export default async function Home() {
 	if (session?.user) redirect("/dashboard");
 	return (
 		<>
-			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div className="mx-auto">
 				<NavBar />
 			</div>
 			<h1> hello world</h1>
