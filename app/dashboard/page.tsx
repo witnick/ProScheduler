@@ -138,7 +138,9 @@ const DashboardPage = async () => {
 									</div>
 								</Link>
 								<div className="flex flex-row items-center justify-between bg-muted p-4 gap-y-5">
-									<Switch />
+									<div className=" p-1 flex rounded-full items-center justify-center bg-transparent/20">
+										<Switch />
+									</div>
 									<Button>Edit event</Button>
 								</div>
 							</div>
