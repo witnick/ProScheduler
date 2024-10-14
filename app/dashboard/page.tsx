@@ -24,6 +24,8 @@ import {
 	DropdownMenuTrigger,
 	DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import CopyLinkMenuItem from "../components/copyLinkMenuItem";
+import EventTypeSwitcher from "../components/eventTypeSwitcher";
 
 const getData = async (id: string) => {
 	const data = prisma.user.findUnique({
@@ -103,18 +105,25 @@ const DashboardPage = async () => {
 														Preview
 													</Link>
 												</DropdownMenuItem>
+												<CopyLinkMenuItem
+													meetingUrl={`${process.env.NEXT_PUBLIC_URL}/${eventTypeData.userName}/${item.url}`}
+												/>
 												<DropdownMenuItem>
-													<Link2 className="mr-2 size-4" />
-													Copy
-												</DropdownMenuItem>
-												<DropdownMenuItem>
-													<Pen className="mr-2 size-4" />
-													Edit
+													<Link
+														href={`/dashboard/event/${item.id}`}
+														className="flex flex-row w-full">
+														<Pen className="mr-2 size-4" />
+														Edit
+													</Link>
 												</DropdownMenuItem>
 												<DropdownMenuSeparator />
 												<DropdownMenuItem>
-													<Trash className="mr-2 size-4" />
-													Delete
+													<Link
+														href={`/dashboard/event/${item.id}/delete`}
+														className="flex flex-row w-full">
+														<Trash className="mr-2 size-4" />
+														Delete
+													</Link>
 												</DropdownMenuItem>
 											</DropdownMenuGroup>
 										</DropdownMenuContent>
@@ -139,9 +148,16 @@ const DashboardPage = async () => {
 								</Link>
 								<div className="flex flex-row items-center justify-between bg-muted p-4 gap-y-5">
 									<div className=" p-1 flex rounded-full items-center justify-center bg-transparent/20">
-										<Switch />
+										<EventTypeSwitcher
+											initialChecked={item.active}
+											eventTypeId={item.id}
+										/>
 									</div>
-									<Button>Edit event</Button>
+									<Link href={`/dashboard/event/${item.id}`}>
+										<Button className="w-full">
+											Edit event
+										</Button>
+									</Link>
 								</div>
 							</div>
 						))}

@@ -1,11 +1,4 @@
 "use client";
-import { CreateEventTypeAction } from "@/app/action";
-import FormFieldError from "@/app/components/formFieldError";
-import { DefaultSubmitButton } from "@/app/components/submitButtons";
-import { requireUser } from "@/app/lib/hooks";
-import { eventTypeSchema } from "@/app/lib/zodSchemas";
-import { Button } from "@/components/ui/button";
-import ButtonGroup from "@/components/ui/ButtonGroup";
 import {
 	Card,
 	CardContent,
@@ -16,6 +9,9 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import React, { useState } from "react";
+import FormFieldError from "./formFieldError";
+import { Textarea } from "@/components/ui/textarea";
 import {
 	Select,
 	SelectContent,
@@ -25,20 +21,39 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
+import ButtonGroup from "@/components/ui/ButtonGroup";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { DefaultSubmitButton } from "./submitButtons";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
-import Link from "next/link";
-import React, { useState } from "react";
 import { useFormState } from "react-dom";
+import { eventTypeSchema } from "@/app/lib/zodSchemas";
+import { EditEventTypeAction } from "../action";
 
 type VideoCallProvider = "Google Meet" | "Microsoft Teams" | "Zoom Meeting";
 
-const NewEventPage = () => {
-	const [activePlatform, setActivePlatform] =
-		useState<VideoCallProvider>("Google Meet");
+interface IEditEventTypeForm {
+	id: string;
+	title: string;
+	url: string;
+	description: string;
+	duration: number;
+	callprovider: VideoCallProvider;
+}
 
-	const [lastResult, action] = useFormState(CreateEventTypeAction, undefined);
+const EditEventTypeForm = ({
+	id,
+	title,
+	url,
+	description,
+	duration,
+	callprovider,
+}: IEditEventTypeForm) => {
+	const [activePlatform, setActivePlatform] =
+		useState<VideoCallProvider>(callprovider);
+	const [lastResult, action] = useFormState(EditEventTypeAction, undefined);
+
 	const [form, fields] = useForm({
 		lastResult,
 		onValidate({ formData }) {
@@ -53,10 +68,9 @@ const NewEventPage = () => {
 		<div className="w-full h-full flex flex-1 items-center justify-center">
 			<Card>
 				<CardHeader>
-					<CardTitle>Add new appointment type</CardTitle>
+					<CardTitle>Edit appointment type</CardTitle>
 					<CardDescription>
-						Create new new apointment type that allows people to
-						book you!
+						Edit the apointment type that allows people to book you!
 					</CardDescription>
 				</CardHeader>
 				<form
@@ -64,6 +78,7 @@ const NewEventPage = () => {
 					onSubmit={form.onSubmit}
 					action={action}
 					noValidate>
+					<Input type="hidden" name="id" key="id" value={id} />
 					<CardContent className="flex flex-col gap-y-2">
 						<div className="flex flex-col gap-y-2">
 							<Label>Title</Label>
@@ -72,7 +87,7 @@ const NewEventPage = () => {
 								placeholder="30 min meeting"
 								name={fields.title.name}
 								key={fields.title.key}
-								defaultValue={fields.title.initialValue}
+								defaultValue={title}
 							/>
 							<FormFieldError messages={fields.title.errors} />
 						</div>
@@ -87,7 +102,7 @@ const NewEventPage = () => {
 									type="text"
 									name={fields.url.name}
 									key={fields.url.key}
-									defaultValue={fields.url.initialValue}
+									defaultValue={url}
 									placeholder="example-url-123"
 									className="rounded-l-none"
 								/>
@@ -99,7 +114,7 @@ const NewEventPage = () => {
 							<Textarea
 								name={fields.description.name}
 								key={fields.description.key}
-								defaultValue={fields.description.initialValue}
+								defaultValue={description}
 								placeholder="meeting description"
 							/>
 							<FormFieldError
@@ -111,7 +126,7 @@ const NewEventPage = () => {
 							<Select
 								name={fields.duration.name}
 								key={fields.duration.key}
-								defaultValue={fields.duration.initialValue}>
+								value={`${duration}`}>
 								<SelectTrigger>
 									<SelectValue placeholder="select duration" />
 								</SelectTrigger>
@@ -140,9 +155,7 @@ const NewEventPage = () => {
 							<Input
 								name={fields.videoCallSoftware.name}
 								key={fields.videoCallSoftware.key}
-								defaultValue={
-									fields.videoCallSoftware.initialValue
-								}
+								defaultValue={activePlatform}
 								value={activePlatform}
 								type="hidden"
 							/>
@@ -196,7 +209,7 @@ const NewEventPage = () => {
 						<Button variant={"secondary"} asChild>
 							<Link href="/dashboard">cancel</Link>
 						</Button>
-						<DefaultSubmitButton submitText="Create event type" />
+						<DefaultSubmitButton submitText="Edit event type" />
 					</CardFooter>
 				</form>
 			</Card>
@@ -204,4 +217,4 @@ const NewEventPage = () => {
 	);
 };
 
-export default NewEventPage;
+export default EditEventTypeForm;

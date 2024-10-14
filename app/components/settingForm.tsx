@@ -17,7 +17,6 @@ import { useForm } from "@conform-to/react";
 import { settingSchema } from "../lib/zodSchemas";
 import { parseWithZod } from "@conform-to/zod";
 import FormFieldError from "./formFieldError";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Plus, X } from "lucide-react";
 // import { supabase } from "../lib/supabase";
