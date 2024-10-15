@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import React, { useActionState, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { DefaultSubmitButton } from "./submitButtons";
 import { useFormState } from "react-dom";
 import { SettingsAction } from "../action";
@@ -20,8 +20,8 @@ import FormFieldError from "./formFieldError";
 import { Button } from "@/components/ui/button";
 import { Plus, X } from "lucide-react";
 // import { supabase } from "../lib/supabase";
-import { requireUser } from "../lib/hooks";
-import { v4 as uuidv4 } from "uuid";
+// import { requireUser } from "../lib/hooks";
+// import { v4 as uuidv4 } from "uuid";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 

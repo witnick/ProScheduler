@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import Logo from "@/public/logo.png";
 import AuthModal from "./authModal";
+import { ThemeToggle } from "./themeToggle";
 
 const NavBar = () => {
 	return (
@@ -14,7 +15,10 @@ const NavBar = () => {
 						Pro<span className="text-blue-500">Scheduler</span>
 					</h4>
 				</Link>
-				<AuthModal />
+				<div className="hidden md:flex md:justify-end md:space-x-4">
+					<ThemeToggle />
+					<AuthModal />
+				</div>
 			</div>
 		</>
 	);

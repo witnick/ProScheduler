@@ -3,7 +3,6 @@ import AvailabilityRow from "@/app/components/availabilityRow";
 import { DefaultSubmitButton } from "@/app/components/submitButtons";
 import prisma from "@/app/lib/db";
 import { requireUser } from "@/app/lib/hooks";
-import { times } from "@/app/lib/times";
 import {
 	CardContent,
 	CardDescription,
@@ -11,15 +10,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import {
-	Select,
-	SelectTrigger,
-	SelectValue,
-	SelectContent,
-	SelectGroup,
-	SelectItem,
-} from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
+
 import { notFound } from "next/navigation";
 
 const getData = async (userId: string) => {
@@ -48,8 +39,9 @@ const AvailibilityPage = async () => {
 			<form action={updateAvailabilityAction}>
 				<CardContent className="flex flex-col gap-y-4">
 					{data &&
-						data.map((d) => (
+						data.map((d, i) => (
 							<AvailabilityRow
+								key={i}
 								id={d.id}
 								isActive={d.isActive}
 								fromTime={d.fromTime}

@@ -5,16 +5,7 @@ import { notFound } from "next/navigation";
 import EmptyState from "../components/emptyState";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import {
-	ExternalLink,
-	icons,
-	Link2,
-	Pen,
-	Settings,
-	Trash,
-	User2,
-} from "lucide-react";
-import { Switch } from "@/components/ui/switch";
+import { ExternalLink, Pen, Settings, Trash, User2 } from "lucide-react";
 import {
 	DropdownMenu,
 	DropdownMenuContent,

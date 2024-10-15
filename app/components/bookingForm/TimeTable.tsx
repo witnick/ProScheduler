@@ -8,7 +8,6 @@ import {
 	parse,
 } from "date-fns";
 import prisma from "@/app/lib/db";
-import { notFound } from "next/navigation";
 import { Prisma } from "@prisma/client";
 import { nylas } from "@/app/lib/nylas";
 import { GetFreeBusyRequest, GetFreeBusyResponse, NylasResponse } from "nylas";

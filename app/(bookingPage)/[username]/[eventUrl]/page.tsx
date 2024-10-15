@@ -3,7 +3,6 @@ import RenderCalendar from "@/app/components/bookingForm/RenderCalendar";
 import TimeTable from "@/app/components/bookingForm/TimeTable";
 import { DefaultSubmitButton } from "@/app/components/submitButtons";
 import prisma from "@/app/lib/db";
-import { requireUser } from "@/app/lib/hooks";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -54,7 +53,6 @@ const BookingPage = async ({
 	params: { username: string; eventUrl: string };
 	searchParams: { date?: string; time?: string };
 }) => {
-	const session = await requireUser();
 	const data = await getData(params.eventUrl, params.username);
 	console.log(`searchParams.date ${searchParams.date}`);
 	const selectedDate = searchParams.date

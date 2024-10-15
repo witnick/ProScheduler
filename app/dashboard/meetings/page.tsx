@@ -58,7 +58,7 @@ const MeetingsPage = async () => {
 					</CardHeader>
 					<CardContent>
 						{data.data.map((item, index) => (
-							<form action={cancelMeetingAction}>
+							<form key={index} action={cancelMeetingAction}>
 								<input
 									type="hidden"
 									name="eventId"

@@ -1,10 +1,10 @@
 "use server"
 import { requireUser } from './lib/hooks';
 import prisma from './lib/db';
-import {eventTypeSchema, onboardingSchema, onboardingSchemaValidation, settingSchema} from './lib/zodSchemas';
+import {eventTypeSchema, /*onboardingSchema,*/ onboardingSchemaValidation, settingSchema} from './lib/zodSchemas';
 import {parseWithZod} from '@conform-to/zod';
 import { redirect } from 'next/navigation';
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 import { supabase } from './lib/supabase';
 import { Session } from 'next-auth';
 import { revalidatePath } from 'next/cache';
@@ -151,7 +151,7 @@ const getUpdatedProfileImageUrl =  async (profileImageFile: File
 };
 
 export const updateAvailabilityAction = async (formData: FormData)=>{
-    const session = requireUser();
+    const session = await requireUser();
     const rawData = Object.fromEntries(formData.entries());
 
     const availabilityData = Object.keys(rawData)
@@ -354,7 +354,7 @@ export const updateEventTypeStatusAction = async (prevState:any, {eventTypeId, i
 export const deleteEventTypeAction = async (formData: FormData) => {
     const session = await requireUser();
 
-    const data = await prisma.eventType.delete({
+    await prisma.eventType.delete({
         where:{
             userId: session.user?.id,
             id: formData.get('id') as string

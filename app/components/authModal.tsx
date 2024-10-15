@@ -11,11 +11,15 @@ import Image from "next/image";
 import { signIn } from "../lib/auth";
 import { GithubAuthButton, GoogleAuthButton } from "./submitButtons";
 
-const AuthModal = () => {
+const AuthModal = ({
+	buttomText = "Try For Free",
+}: {
+	buttomText?: string;
+}) => {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button>Try For Free</Button>
+				<Button>{buttomText}</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-width-[360px]">
 				<DialogHeader className="flex flex-row justify-center items-center gap-2">

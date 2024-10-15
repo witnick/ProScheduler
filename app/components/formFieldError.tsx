@@ -6,8 +6,8 @@ const FormFieldError = ({ messages: messages }: IFormFieldError) => {
 	return (
 		messages && (
 			<p className="bg-red-600 opacity-100 text-white p-2 ">
-				{messages.map((m) => (
-					<span>{m}</span>
+				{messages.map((m, i) => (
+					<span key={i}>{m}</span>
 				))}
 			</p>
 		)

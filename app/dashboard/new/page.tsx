@@ -2,7 +2,6 @@
 import { CreateEventTypeAction } from "@/app/action";
 import FormFieldError from "@/app/components/formFieldError";
 import { DefaultSubmitButton } from "@/app/components/submitButtons";
-import { requireUser } from "@/app/lib/hooks";
 import { eventTypeSchema } from "@/app/lib/zodSchemas";
 import { Button } from "@/components/ui/button";
 import ButtonGroup from "@/components/ui/ButtonGroup";

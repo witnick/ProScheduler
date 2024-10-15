@@ -20,8 +20,8 @@ const CalendarGrid = ({
 }: ICalendarGrid) => {
 	const startDate = state.visibleRange.start.add(offset);
 	const endDate = endOfMonth(startDate);
-	let { locale } = useLocale();
-	let { gridProps, headerProps, weekDays } = useCalendarGrid(
+	const { locale } = useLocale();
+	const { gridProps, headerProps, weekDays } = useCalendarGrid(
 		{
 			startDate,
 			endDate,
@@ -31,7 +31,7 @@ const CalendarGrid = ({
 	);
 
 	// Get the number of weeks in the month so we can render the proper number of rows.
-	let weeksInMonth = getWeeksInMonth(startDate, locale);
+	const weeksInMonth = getWeeksInMonth(startDate, locale);
 
 	return (
 		<table {...gridProps} className="flex-1">
