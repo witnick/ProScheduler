@@ -93,6 +93,7 @@ const calcAvailableTimeSlots = async (
 	);
 
 	//get busy slot from nylas
+	//@ts-ignore
 	const busySlot = nylasData.data[0].timeSlots.map((slot) => ({
 		start: fromUnixTime(slot.startTime),
 		end: fromUnixTime(slot.endTime),

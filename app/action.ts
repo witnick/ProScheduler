@@ -115,6 +115,7 @@ export async function SettingsAction(prevState:any, formData: FormData){
             image: newProfileImageUrl || submission.value.profileImage,
         }
     });
+    revalidatePath("/dashboard");
     return redirect("/dashboard");
 
 }

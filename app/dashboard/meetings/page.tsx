@@ -69,6 +69,7 @@ const MeetingsPage = async () => {
 										<p className="text-muted-foreground text-sm">
 											{format(
 												fromUnixTime(
+													/* @ts-ignore */
 													item.when.startTime
 												),
 												"EEE, dd MMM HH:mm"
@@ -77,12 +78,14 @@ const MeetingsPage = async () => {
 										<p className="text-xs text-muted-foreground">
 											{format(
 												fromUnixTime(
+													/* @ts-ignore */
 													item.when.startTime
 												),
 												"hh:mm a"
 											)}{" "}
 											-{" "}
 											{format(
+												/* @ts-ignore */
 												fromUnixTime(item.when.endTime),
 												"hh:mm a"
 											)}
@@ -94,6 +97,7 @@ const MeetingsPage = async () => {
 												className="text-xs text-primary underline underline-offset-4 "
 												//href="+"
 												href={
+													/* @ts-ignore */
 													item.conferencing?.details
 														.url
 												}

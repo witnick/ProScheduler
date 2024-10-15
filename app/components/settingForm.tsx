@@ -58,7 +58,8 @@ const SettingForm = ({ fullName, email, profileImage }: ISettingForm) => {
 		if (imageFileUrl) URL.revokeObjectURL(imageFileUrl!);
 		setImageFileUrl(undefined);
 		setImageFile(undefined);
-		newProfileImageInput.current.value = "";
+		if (newProfileImageInput.current)
+			newProfileImageInput.current.value = "";
 	};
 
 	const handleAddImage = () => {
@@ -130,6 +131,7 @@ const SettingForm = ({ fullName, email, profileImage }: ISettingForm) => {
 										<>
 											<div>no image</div>
 											<Button
+												type="button"
 												onClick={handleAddImage}
 												variant={"default"}
 												size={"sm"}

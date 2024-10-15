@@ -31,7 +31,10 @@ import { useFormState } from "react-dom";
 import { eventTypeSchema } from "@/app/lib/zodSchemas";
 import { EditEventTypeAction } from "../action";
 
-type VideoCallProvider = "Google Meet" | "Microsoft Teams" | "Zoom Meeting";
+export type VideoCallProvider =
+	| "Google Meet"
+	| "Microsoft Teams"
+	| "Zoom Meeting";
 
 interface IEditEventTypeForm {
 	id: string;

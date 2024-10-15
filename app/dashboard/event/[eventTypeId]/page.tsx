@@ -1,4 +1,6 @@
-import EditEventTypeForm from "@/app/components/editEventTypeForm";
+import EditEventTypeForm, {
+	VideoCallProvider,
+} from "@/app/components/editEventTypeForm";
 import prisma from "@/app/lib/db";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -34,7 +36,7 @@ const EventEditPage = async ({
 			url={data.url}
 			description={data.description}
 			duration={data.duration}
-			callprovider={data.videoCallSoftware}
+			callprovider={data.videoCallSoftware as VideoCallProvider}
 		/>
 	);
 };
